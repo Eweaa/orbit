@@ -1,0 +1,115 @@
+<div class="home page">
+  <header class="home__bar">
+    <a class="brand" routerLink="/" aria-label="Orbit home">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="3.1" fill="currentColor" />
+          <ellipse
+            cx="12"
+            cy="12"
+            rx="9"
+            ry="4.3"
+            transform="rotate(-28 12 12)"
+            stroke="currentColor"
+            stroke-width="1.3"
+          />
+        </svg>
+      </span>
+      <span>Orbit</span>
+    </a>
+
+    <div class="home__nav">
+      <app-logout-button />
+    </div>
+  </header>
+
+  <main class="home__main">
+    <div class="home__intro">
+      <p class="eyebrow">Your workspace</p>
+      <h1 class="home__title">Welcome back</h1>
+      <p class="home__lede">
+        @if (calendarLinkState() === 'linked') {
+          Your calendar is connected, so everything coming up stays within reach.
+        } @else {
+          You are signed in. Connect your calendar so Orbit can keep your schedule in view.
+        }
+      </p>
+    </div>
+
+    <div class="home__grid">
+      <section class="card" aria-labelledby="calendar-title">
+        <div class="card__heading">
+          <span class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <rect
+                x="3"
+                y="5"
+                width="18"
+                height="16"
+                rx="3"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <path
+                d="M3 10h18M8 3v4M16 3v4"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </span>
+
+          <div class="card__text">
+            <h2 class="card__title" id="calendar-title">Google Calendar</h2>
+            <p class="card__subtitle">
+              See your events next to everything else you are working on.
+            </p>
+          </div>
+        </div>
+
+        @switch (calendarLinkState()) {
+          @case ('loading') {
+            <p class="card__status" role="status">
+              <span class="card__spinner" aria-hidden="true"></span>
+              <span>Checking Google Calendar…</span>
+            </p>
+          }
+
+          @case ('linked') {
+            <app-calendar-connected />
+
+            @switch (eventsState()) {
+              @case ('loading') {
+                <p class="card__status" role="status">
+                  <span class="card__spinner" aria-hidden="true"></span>
+                  <span>Loading your events…</span>
+                </p>
+              }
+
+              @case ('ready') {
+                <p class="card__count">
+                  <span class="card__count-number">{{ eventCount() }}</span>
+                  <span>{{ eventCount() === 1 ? 'upcoming event' : 'upcoming events' }}</span>
+                </p>
+              }
+
+              @default {
+                <p class="card__note">We could not load your events right now.</p>
+              }
+            }
+
+            <a class="button button--primary" routerLink="/calendar">View all events</a>
+          }
+
+          @default {
+            <app-link-google-calendar />
+
+            <p class="card__note">
+              You will be taken to Google to approve access, then brought straight back to Orbit.
+            </p>
+          }
+        }
+      </section>
+    </div>
+  </main>
+</div>

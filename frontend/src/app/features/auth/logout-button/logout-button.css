@@ -1,0 +1,25 @@
+:host {
+  display: contents;
+}
+
+.logout {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: rgba(255, 255, 255, 0.68);
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: inherit;
+  cursor: pointer;
+}
+
+.logout:hover {
+  color: #fff;
+}
+
+.logout:focus-visible {
+  border-radius: 4px;
+  outline: 2px solid var(--accent-on-dark);
+  outline-offset: 2px;
+}

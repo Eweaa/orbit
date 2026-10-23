@@ -1,0 +1,16 @@
+/* The button is layout-transparent, so surrounding cards and action rows keep
+   positioning it exactly as if it were written inline. */
+:host {
+  display: contents;
+}
+
+.button:disabled {
+  cursor: progress;
+  opacity: 0.7;
+}
+
+.link-error {
+  color: #fca5a5;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}

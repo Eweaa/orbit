@@ -1,0 +1,9 @@
+<button class="button button--primary" type="button" [disabled]="loading()" (click)="link()">
+  {{ loading() ? 'Connecting…' : label() }}
+</button>
+
+@if (failed()) {
+  <span class="link-error" role="alert"
+    >Could not connect to Google Calendar. Please try again.</span
+  >
+}

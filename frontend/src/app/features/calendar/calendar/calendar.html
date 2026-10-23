@@ -1,0 +1,78 @@
+<main class="page calendar">
+  <div class="calendar__inner">
+    <div class="calendar__topbar">
+      <a class="link--quiet" routerLink="/">Back to home</a>
+      <app-logout-button />
+    </div>
+
+    <header class="calendar__header">
+      <p class="eyebrow">Google Calendar</p>
+      <h1 class="calendar__title">Your calendar</h1>
+      <p class="calendar__subtitle">Everything coming up in your connected calendar.</p>
+      @if (linked()) {
+        <app-calendar-connected />
+      }
+    </header>
+
+    <section class="card calendar__card">
+      @switch (state()) {
+        @case ('loading') {
+          <div class="calendar__state" role="status">
+            <span class="calendar__spinner" aria-hidden="true"></span>
+            <p class="calendar__state-text">Loading your calendar…</p>
+          </div>
+        }
+
+        @case ('not-linked') {
+          <div class="calendar__state">
+            <p class="calendar__state-title">Google Calendar is not linked yet</p>
+            <p class="calendar__state-text">Link it to see your events here.</p>
+            <app-link-google-calendar />
+          </div>
+        }
+
+        @case ('ready') {
+          @if (eventViews().length === 0) {
+            <div class="calendar__state">
+              <p class="calendar__state-title">No upcoming events</p>
+              <p class="calendar__state-text">
+                Your calendar is linked, but nothing is scheduled right now.
+              </p>
+            </div>
+          } @else {
+            <ul class="events">
+              @for (event of eventViews(); track event.id) {
+                <li class="event">
+                  <p class="event__title">{{ event.title }}</p>
+                  <p class="event__when">
+                    <span>{{ event.start | date: 'mediumDate' }}</span>
+                    @if (event.spansDays) {
+                      <span>– {{ event.end | date: 'mediumDate' }}</span>
+                    }
+                    <span class="event__dot" aria-hidden="true">·</span>
+                    @if (event.allDay) {
+                      <span class="event__time">All day</span>
+                    } @else {
+                      <span class="event__time">
+                        {{ event.start | date: 'shortTime' }} –
+                        {{ event.end | date: 'shortTime' }}
+                      </span>
+                    }
+                  </p>
+                </li>
+              }
+            </ul>
+          }
+        }
+
+        @default {
+          <div class="calendar__state">
+            <p class="calendar__state-title">Something went wrong</p>
+            <p class="calendar__state-text">We could not load your calendar. Please try again.</p>
+            <button class="button button--primary" type="button" (click)="retry()">Retry</button>
+          </div>
+        }
+      }
+    </section>
+  </div>
+</main>

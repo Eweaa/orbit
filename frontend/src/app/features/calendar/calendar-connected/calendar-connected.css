@@ -1,0 +1,31 @@
+:host {
+  display: inline-flex;
+  max-width: 100%;
+}
+
+.connected {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.connected__icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.16);
+  color: #6ee7b7;
+}
+
+.connected__icon svg {
+  width: 12px;
+  height: 12px;
+}

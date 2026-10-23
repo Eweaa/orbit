@@ -1,0 +1,54 @@
+<main class="page result">
+  <section class="card result__card">
+    @if (error()) {
+      <span class="result__icon result__icon--error" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" />
+          <path
+            d="M12 7.75v5M12 16.25v.5"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+          />
+        </svg>
+      </span>
+
+      <p class="eyebrow eyebrow--error">Something went wrong</p>
+      <h1 class="result__title">Failed to link Google Calendar</h1>
+      <p class="result__message">
+        Google did not grant access, so nothing was changed. You can try again whenever you are
+        ready.
+      </p>
+
+      <div class="result__actions">
+        <app-link-google-calendar label="Try again" />
+        <a class="link--quiet" routerLink="/">Back to home</a>
+      </div>
+    } @else {
+      <span class="result__icon result__icon--success" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" />
+          <path
+            d="M8.25 12.4l2.6 2.6 5-5.4"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </span>
+
+      <p class="eyebrow eyebrow--success">All set</p>
+      <h1 class="result__title">Google Calendar linked successfully!</h1>
+      <p class="result__message">
+        Orbit can now keep your calendar in view alongside everything else you are working on.
+      </p>
+      <p class="result__hint">Taking you to your calendar…</p>
+
+      <div class="result__actions">
+        <a class="button button--primary" routerLink="/calendar">View my calendar</a>
+        <a class="link--quiet" routerLink="/">Back to home</a>
+      </div>
+    }
+  </section>
+</main>

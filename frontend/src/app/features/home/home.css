@@ -1,0 +1,221 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.home__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px clamp(20px, 4vw, 44px);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.brand__mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+.brand__mark svg {
+  width: 19px;
+  height: 19px;
+}
+
+.home__bar .link--quiet {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.home__bar .link--quiet:hover {
+  color: #fff;
+}
+
+.home__nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.home__main {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  width: min(100%, 70rem);
+  margin: auto;
+  padding: 24px clamp(20px, 4vw, 44px) 72px;
+}
+
+.home__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  max-width: 42rem;
+}
+
+.home__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr));
+  align-items: start;
+  gap: 24px;
+}
+
+.home__title {
+  margin: 0;
+  color: #fdfdfd;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+}
+
+.home__lede {
+  margin: 0;
+  max-width: 46ch;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 22px;
+  padding: clamp(24px, 3vw, 34px);
+}
+
+.card__heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.card__icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.card__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.card__title {
+  margin: 0;
+  color: #fdfdfd;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.card__subtitle {
+  margin: 0;
+  max-width: 42ch;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+.card .button {
+  align-self: flex-start;
+}
+
+.card__note {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.card__count {
+  display: flex;
+  align-items: baseline;
+  align-self: flex-start;
+  gap: 9px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.9375rem;
+}
+
+.card__count-number {
+  color: #fdfdfd;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.card__status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.9375rem;
+}
+
+.card__spinner {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.16);
+  border-top-color: var(--accent-on-dark);
+  border-radius: 50%;
+  animation: home-spin 700ms linear infinite;
+}
+
+.card app-calendar-connected {
+  align-self: flex-start;
+}
+
+@keyframes home-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card__spinner {
+    animation: none;
+  }
+}
+
+@media (max-width: 460px) {
+  .card .button {
+    align-self: stretch;
+  }
+}
